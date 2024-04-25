@@ -4,12 +4,13 @@ services:
     build: .
     command: >
       gunicorn -b 0.0.0.0:800 
-      --access-logfile- 
+      --access-logfile - 
       --reload 
       "betting_platform.app:create_app()"
     environment:
       PYTHONUNBUFFERED: 'true'
+    working_dir: /betting_platform
     volumes:
-      - "./:betting_platform"
+      - ".:/betting_platform"
     ports:
       - "8000:8000"
