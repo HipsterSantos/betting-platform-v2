@@ -1,0 +1,15 @@
+version: "3"
+services:
+  betting_platform:
+    build: .
+    command: >
+      gunicorn -b 0.0.0.0:800 
+      --access-logfile- 
+      --reload 
+      "betting_platform.app:create_app()"
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - "./:betting_platform"
+    ports:
+      - "8000:8000"
